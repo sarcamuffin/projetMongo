@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/TaskManager',{ 
+mongoose.connect('mongodb://0.0.0.0:27017/TaskManager',{
                         useNewUrlParser: true,
                         // useCreateIndex: true,
                         // useFindAndModify: false

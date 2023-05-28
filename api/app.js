@@ -1,15 +1,22 @@
 const express = require('express');
 const app = express();
 
-const {mongoose} = require('./db/mongoose'); 
+const {mongoose} = require('./db/mongoose');
 
-const bodyParser = require('body-parser');  
+const bodyParser = require('body-parser');
 
 const { List, Task } = require('./db/models');
 
 app.use(bodyParser.json());
 
- 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+
+
 
 app.get('/lists',(req,res) => {
 
@@ -29,7 +36,7 @@ app.post('/lists',(req,res) => {
     newList.save().then((listDoc)=>{
         res.send(listDoc);
     })
-    
+
 });
 
 app.patch('/lists/:id',(req,res) =>{
